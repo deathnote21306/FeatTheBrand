@@ -1,8 +1,30 @@
+# dependencies
 node_modules/
+.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+/build
 dist/
+next-env.d.ts
+*.tsbuildinfo
+
+# testing
+/coverage
+
+# env (keep the example)
 .env
 .env.*
 !.env.example
+
+# vercel
+.vercel
+
+# misc
 .DS_Store
-*.tsbuildinfo
+*.pem
 __pycache__/
+npm-debug.log*
+.pnpm-debug.log*
