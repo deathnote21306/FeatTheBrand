@@ -1,0 +1,151 @@
+/*
+ * FEAT design tokens (Tailwind v4 theme).
+ * Full reference and usage rules: docs/DESIGN_TOKENS.md. Live preview: /dev/tokens (dev only).
+ *
+ * Source of truth: the mockup board (assets/reference/mockup-board.jpg) and the approved
+ * prototype (prototype/src). Values below were taken from the prototype, which was matched
+ * to the mockup screen by screen.
+ */
+
+/* Reset Tailwind's default palette and radii so only FEAT tokens exist. */
+@theme {
+  --color-*: initial;
+  --radius-*: initial;
+}
+
+@theme {
+  /* ---------- Colors ---------- */
+
+  /* Base surfaces, near-black */
+  --color-ink: #050506; /* page background */
+  --color-ink-2: #0b0b0d; /* raised surface: cards, inputs */
+  --color-ink-3: #131316; /* hover on raised surfaces, skeletons */
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Text on ink. Contrast vs ink (#050506), WCAG AA needs 4.5:1 for body text. */
+  --color-fg: #ffffff; /* 20.4:1  titles, primary text */
+  --color-fg-strong: rgb(255 255 255 / 0.9); /* 16.3:1  hero copy */
+  --color-fg-body: rgb(255 255 255 / 0.8); /* 12.8:1  paragraphs */
+  --color-fg-muted: rgb(255 255 255 / 0.6); /* 7.3:1   nav, secondary info */
+  --color-fg-subtle: rgb(255 255 255 / 0.55); /* 6.3:1   LOWEST level allowed for text */
+  --color-fg-disabled: rgb(255 255 255 / 0.35); /* 3.1:1   disabled only, never for readable text */
+
+  /* 1px borders, low opacity */
+  --color-line: rgb(255 255 255 / 0.14); /* default dividers and card borders */
+  --color-line-strong: rgb(255 255 255 / 0.32); /* inputs, chips */
+  --color-line-emphasis: rgb(255 255 255 / 0.6); /* outline buttons, selected chips */
+
+  /* Accents */
+  --color-gold: #e9c58f; /* light-slit warm accent, used sparingly (12.5:1) */
+  --color-danger: #d4352c; /* fills only: low-stock bar, error borders (4.2:1, not for text) */
+  --color-danger-text: #ec5a4f; /* error and low-stock text (6.0:1 on ink, 4.9:1 on ink-3) */
+
+  /* ---------- Typography ---------- */
+
+  /* Display and body are separate tokens so the brand font can replace either one alone. */
+  --font-display: var(--font-chakra), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-chakra), ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale. Each step bakes in line-height, tracking and weight.
+     Mockup screen numbers refer to assets/reference/mockup-board.jpg. */
+  --text-display-xl: 4rem; /* 64px  DROP_01 hero, desktop (3) */
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: 0.04em;
+  --text-display-xl--font-weight: 700;
+
+  --text-display-lg: 2.75rem; /* 44px  DROP_01 hero, mobile (3) */
+  --text-display-lg--line-height: 1;
+  --text-display-lg--letter-spacing: 0.04em;
+  --text-display-lg--font-weight: 700;
+
+  --text-display: 1.875rem; /* 30px  product code LS-01 (4) */
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: 0.04em;
+  --text-display--font-weight: 700;
+
+  --text-title: 1.5rem; /* 24px  COMMANDE CONFIRMÉE, desktop (7) */
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: 0.08em;
+  --text-title--font-weight: 700;
+
+  --text-title-sm: 1.25rem; /* 20px  COMMANDE CONFIRMÉE, mobile (7) */
+  --text-title-sm--line-height: 1.2;
+  --text-title-sm--letter-spacing: 0.08em;
+  --text-title-sm--font-weight: 700;
+
+  --text-figure: 1.375rem; /* 22px  product price (4), countdown digits (3) */
+  --text-figure--line-height: 1.2;
+  --text-figure--letter-spacing: 0.02em;
+  --text-figure--font-weight: 500;
+
+  --text-heading: 0.9375rem; /* 15px  ACCÈS PRIVÉ (2), VOTRE PANIER (5), STEP BY STEP (1) */
+  --text-heading--line-height: 1.6;
+  --text-heading--letter-spacing: 0.32em;
+  --text-heading--font-weight: 600;
+
+  --text-subheading: 0.8125rem; /* 13px  card codes LS-01 / HD-01 (3, 5, 8) */
+  --text-subheading--line-height: 1.3;
+  --text-subheading--letter-spacing: 0.06em;
+  --text-subheading--font-weight: 600;
+
+  --text-body: 0.75rem; /* 12px  paragraphs, prices on cards, form text */
+  --text-body--line-height: 1.625;
+  --text-body--letter-spacing: 0.01em;
+  --text-body--font-weight: 400;
+
+  --text-label: 0.6875rem; /* 11px  buttons, cart count (all screens) */
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.18em;
+  --text-label--font-weight: 600;
+
+  --text-caption: 0.625rem; /* 10px  nav, stock count "27 / 50 en stock", field labels */
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.18em;
+  --text-caption--font-weight: 500;
+
+  --text-micro: 0.5625rem; /* 9px  card subtitles, footer STYLE × PERFORMANCE. Smallest size. */
+  --text-micro--line-height: 1.4;
+  --text-micro--letter-spacing: 0.18em;
+  --text-micro--font-weight: 500;
+
+  /* Tracking overrides, for when a size step's default is not right */
+  --tracking-feat: 0.32em; /* widest: PRIVATE ACCESS, headings */
+  --tracking-feat-sm: 0.18em; /* small caps labels, buttons */
+  --tracking-display: 0.04em; /* big display text */
+
+  /* ---------- Spacing ---------- */
+  /* Tailwind's 4px base step is kept (p-1 = 4px). Named layout values: */
+  --spacing-gutter: 1.25rem; /* 20px page side padding, mobile */
+  --spacing-gutter-md: 2.5rem; /* 40px page side padding, md and up */
+  --spacing-control: 2.75rem; /* 44px min height of tap targets (inputs, buttons, chips) */
+
+  /* ---------- Radius ---------- */
+  /* Everything is square. Use rounded-none (default) everywhere; rounded-full only for
+     color swatches and radio dots. No other radii exist on purpose. */
+
+  /* ---------- Motion ---------- */
+  --ease-feat: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-fade-up: fade-up 0.9s var(--ease-feat) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Dark glass panel over backgrounds (cards, product info panel) */
+@utility glass {
+  background: linear-gradient(180deg, rgb(10 10 12 / 0.72), rgb(6 6 8 / 0.82));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
