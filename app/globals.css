@@ -1,18 +1,43 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
-/* Placeholder colors. Real design tokens land in #5. */
-:root {
-  --background: #050505;
-  --foreground: #ededed;
-}
+@layer base {
+  html {
+    color-scheme: dark;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-}
+  body {
+    background: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, sans-serif;
+  ::selection {
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+
+  ::placeholder {
+    color: var(--color-fg-subtle);
+  }
+
+  /* Visible keyboard focus everywhere; components may refine it. */
+  :focus-visible {
+    outline: 1px solid var(--color-white);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
